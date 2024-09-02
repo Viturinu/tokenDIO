@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MIT
+
 pragma solidity ^0.8.0;
 
 interface IRC20 {
@@ -38,7 +40,7 @@ contract DIOToken is IRC20{
         return balances[tokenOwner];
     }
 
-    function transfer(address receiver, uint256 numTokens) public override view returns (bool){
+    function transfer(address receiver, uint256 numTokens) public override returns (bool){
         require(numTokens <= balances[msg.sender]);
         balances[msg.sender] = balances[msg.sender]-numTokens;
         balances[receiver] = balances[receiver]+numTokens;
@@ -56,7 +58,7 @@ contract DIOToken is IRC20{
         return allowed[owner][delegate];//qual saldo que um determinado endereço permitiu que outro endereço pudesse gastar em seu nome
     }
 
-    function transferFrom(address owner, address buyer, uint256 numTokens){
+    function transferFrom(address owner, address buyer, uint256 numTokens) public override returns (bool){
         require(numTokens <= balances[owner]);
         require(numTokens <= allowed[owner][msg.sender]);
 
