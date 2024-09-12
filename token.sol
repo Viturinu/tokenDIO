@@ -18,7 +18,7 @@ interface IERC20{
 
 }
 
-contract DIOToken is IERC20{
+contract NMGToken is IERC20{
 
     string public constant name = "NMG Token";
     string public constant symbol = "NMG";
